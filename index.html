@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A live weather window powered by the Open-Meteo public API.">
+  <title>Weather Window · Live API</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body data-weather="clear" data-day="true">
+  <div class="weather-scene" aria-hidden="true">
+    <div class="sun-or-moon"></div>
+    <div class="cloud cloud-one"></div>
+    <div class="cloud cloud-two"></div>
+    <div class="precipitation" id="precipitation"></div>
+  </div>
+
+  <header class="site-header">
+    <a class="brand" href="#weather-card">CCT360 · LAB 6</a>
+    <p>LIVE PUBLIC API</p>
+  </header>
+
+  <main>
+    <section class="intro" aria-labelledby="page-title">
+      <p class="eyebrow">THE WEB IN REAL TIME</p>
+      <h1 id="page-title">Open a window<br>to the weather.</h1>
+      <p class="intro-copy">Choose a city. Live data changes the colour, atmosphere, and advice on this page.</p>
+    </section>
+
+    <nav class="city-picker" aria-label="Choose a Canadian city">
+      <button class="city-button active" type="button" data-city="toronto" aria-pressed="true">Toronto</button>
+      <button class="city-button" type="button" data-city="vancouver" aria-pressed="false">Vancouver</button>
+      <button class="city-button" type="button" data-city="montreal" aria-pressed="false">Montréal</button>
+    </nav>
+
+    <section class="weather-card" id="weather-card" aria-live="polite" aria-busy="true">
+      <div class="card-topline">
+        <div>
+          <p class="status" id="status"><span></span> Connecting to live weather…</p>
+          <p class="local-time" id="local-time">--</p>
+        </div>
+        <button class="refresh-button" id="refresh-button" type="button">Refresh data</button>
+      </div>
+
+      <div class="current-weather">
+        <div>
+          <p class="place" id="place">Toronto, Canada</p>
+          <h2 class="temperature"><span id="temperature">--</span><sup>°C</sup></h2>
+        </div>
+        <div class="condition-block">
+          <div class="condition-icon" id="condition-icon" aria-hidden="true">○</div>
+          <p class="condition" id="condition">Loading weather</p>
+        </div>
+      </div>
+
+      <div class="details" aria-label="Current weather details">
+        <article>
+          <p>FEELS LIKE</p>
+          <strong><span id="feels-like">--</span>°</strong>
+        </article>
+        <article>
+          <p>HUMIDITY</p>
+          <strong><span id="humidity">--</span>%</strong>
+        </article>
+        <article>
+          <p>WIND</p>
+          <strong><span id="wind">--</span> km/h</strong>
+        </article>
+        <article>
+          <p>PRECIPITATION</p>
+          <strong><span id="rain">--</span> mm</strong>
+        </article>
+      </div>
+
+      <div class="weather-note">
+        <p class="note-label">TODAY'S NOTE</p>
+        <p id="weather-note">Reading the sky…</p>
+      </div>
+    </section>
+
+    <section class="api-explainer" aria-labelledby="api-title">
+      <p class="eyebrow">HOW IT WORKS</p>
+      <h2 id="api-title">Data becomes design.</h2>
+      <div class="steps">
+        <article>
+          <span>fetch()</span>
+          <p>The browser requests current weather from Open-Meteo.</p>
+        </article>
+        <article>
+          <span>JSON</span>
+          <p>The response contains temperature, wind, humidity, and weather codes.</p>
+        </article>
+        <article>
+          <span>DOM</span>
+          <p>JavaScript updates the interface and changes the scene to match the data.</p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>CCT360 Lab 6 · Working with API</p>
+    <p>Live data from <a href="https://open-meteo.com/" target="_blank" rel="noreferrer">Open-Meteo</a></p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
